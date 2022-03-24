@@ -9,6 +9,17 @@ fun main(){
     for(ertek in sajatertek(A)){
         println(ertek)
     }
+
+    println("Asz: ${ASZStabilFI(A)}")
+}
+
+fun ASZStabilFI(
+    A: Array<Double>
+): Boolean {
+    if(-A[0] + -A[3] > 0 && -A[1]*A[2] + A[0]*A[3] > 0){  //a1 > 0 és a2 > 0
+        return true
+    }
+    return false
 }
 
 fun sajatertek(
