@@ -5,10 +5,6 @@ fun main(){
     val b = 10
     val c = -0.5
 
-    /*val a = 20
-    val b = 8
-    val c = -0.4*/
-
     val b2 = b
     val a2 = (1-c)*b/(-c)
     val c2 = (a2/(1-c)-a)*-1

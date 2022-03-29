@@ -33,7 +33,13 @@ fun main(){
     }
     println()
 
-
+    //a
+    //b
+    //c
+    println("c: $lambda[0]")
+    //d
+    //f
+    println("f: $lambda[1]")
 }
 
 fun ASZStabilFI(
