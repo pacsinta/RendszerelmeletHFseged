@@ -4,9 +4,24 @@ fun main(){
     val CT = arrayOf(-0.9, 0.5)
     val d = -4.3
 
-    for(ertek in sajatertek(A)){
+    val lambda = sajatertek(A)
+    for(ertek in lambda){
         println(ertek)
     }
 
+    val L1 = L(A, lambda[0], lambda[1])
+    val L2 = L(A, lambda[1], lambda[0])
 
+    print("L1: ")
+    for (ertek in L1){
+        print("$ertek ")
+    }
+
+    println()
+
+    print("L2: ")
+    for (ertek in L2){
+        print("$ertek ")
+    }
+    println()
 }

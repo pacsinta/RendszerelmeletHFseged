@@ -6,11 +6,34 @@ fun main(){
     val CT = arrayOf(-1.3, 0.6)
     val d = 1.5
 
-    for(ertek in sajatertek(A)){
+
+    val lambda = sajatertek(A)
+    for(ertek in lambda){
         println(ertek)
     }
 
+
+
     println("Asz: ${ASZStabilFI(A)}")
+
+
+    val L1 = L(A, lambda[0], lambda[1])
+    val L2 = L(A, lambda[1], lambda[0])
+
+    print("L1: ")
+    for (ertek in L1){
+        print("$ertek ")
+    }
+
+    println()
+
+    print("L2: ")
+    for (ertek in L2){
+        print("$ertek ")
+    }
+    println()
+
+
 }
 
 fun ASZStabilFI(
@@ -35,8 +58,17 @@ fun L(
     A: Array<Double>,
     lambda1: Double,
     lambda2: Double
-){
+): Array<Double> {
+    val E  = arrayOf(1.0, 0.0, 0.0, 1.0)
 
+    val L1 = Array(4){0.0}
+
+    for(i in 0..3){
+        L1[i] = A[i] - lambda2*E[i]
+        L1[i] = L1[i] / (lambda1 - lambda2)
+    }
+
+    return L1
 }
 
 //https://www.programiz.com/kotlin-programming/examples/quadratic-roots-equation
