@@ -45,7 +45,7 @@ data class Matrix(
         }
     }
 
-    operator fun Matrix.times(B: Matrix): Matrix {
+    operator fun times(B: Matrix): Matrix {
         val C = Matrix(
             row = this.row,
             column = B.column
@@ -121,9 +121,6 @@ data class Matrix(
         b: Double,
         c: Double
     ):Array<Double> {
-
-        println("b: $b")
-        println("c: $c")
         var root1 = 0.0
         var root2 = 0.0
 
@@ -147,4 +144,6 @@ data class Matrix(
 
         return arrayOf(root1, root2)
     }
+
+
 }
