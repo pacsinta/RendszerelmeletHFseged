@@ -4,7 +4,7 @@ fun main(){
     val CT = arrayOf(-0.9, 0.5)
     val d = -4.3
 
-    val lambda = sajatertek(A)
+    /*val lambda = sajatertek(A)
     for(ertek in lambda){
         println(ertek)
     }
@@ -23,5 +23,5 @@ fun main(){
     for (ertek in L2){
         print("$ertek ")
     }
-    println()
+    println()*/
 }

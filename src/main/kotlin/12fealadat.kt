@@ -1,31 +1,35 @@
 import kotlin.math.sqrt
 
 fun main(){
-    val A = arrayOf(-5.6725, -0.4183, 0.0413, -6.3275)
-    val B = arrayOf(0.9, -1.9)
-    val CT = arrayOf(-1.3, 0.6)
-    val d = 1.5
+    /*val A = Matrix(2, 2, arrayOf(-5.6725, -0.4183, 0.0413, -6.3275))
+    val B = Matrix(2, 1, arrayOf(0.9, -1.9))
+    val CT = Matrix(1, 2, arrayOf(-1.3, 0.6))
+    val d = 1.5*/
 
+    val A = Matrix(2, 2, arrayOf(-6.2415, 3.0277, 0.2348, -1.8585))
+    val B = Matrix(2, 1, arrayOf(-0.1, -2.0))
+    val CT = Matrix(1, 2, arrayOf(0.8, -1.3))
+    val d = -0.6
 
-    val lambda = sajatertek(A)
-    for(ertek in lambda){
-        println(ertek)
-    }
+    A.print()
 
-
+    val lambda = A.lamda()
+    println("lambda1 = ${lambda[0]}, lambda2 = ${lambda[1]}")
 
     println("Asz: ${ASZStabilFI(A)}")
 
 
-    val L1 = L(A, lambda[0], lambda[1])
-    val L2 = L(A, lambda[1], lambda[0])
 
-    print("L1: ")
-    for (ertek in L1){
-        print("$ertek ")
-    }
+    val L1 = A.Lagrange(lambda[0], lambda[1])
+    val L2 = A.Lagrange(lambda[1], lambda[0])
 
-    println()
+    println("L1: ")
+    L1.print()
+
+    println("L2: ")
+    L2.print()
+
+    /*println()
 
     print("L2: ")
     for (ertek in L2){
@@ -39,26 +43,19 @@ fun main(){
     println("c: $lambda[0]")
     //d
     //f
-    println("f: $lambda[1]")
+    println("f: $lambda[1]")*/
 }
 
 fun ASZStabilFI(
-    A: Array<Double>
+    A: Matrix
 ): Boolean {
-    if(-A[0] + -A[3] > 0 && -A[1]*A[2] + A[0]*A[3] > 0){  //a1 > 0 és a2 > 0
+    if(-A.data[0][0] + -A.data[1][1] > 0 && -A.data[0][1]*A.data[1][0] + A.data[0][0]*A.data[1][1] > 0){  //a1 > 0 és a2 > 0
         return true
     }
     return false
 }
 
-fun sajatertek(
-    A: Array<Double>
-): Array<Double> {
-    return masodfokuMegoldo(
-        b = -A[0] + -A[3],
-        c = -A[1]*A[2] + A[0]*A[3]
-    )
-}
+
 
 fun L(
     A: Array<Double>,
@@ -77,32 +74,3 @@ fun L(
     return L1
 }
 
-//https://www.programiz.com/kotlin-programming/examples/quadratic-roots-equation
-fun masodfokuMegoldo(
-    a: Double = 1.0,
-    b: Double,
-    c: Double
-):Array<Double> {
-    var root1 = 0.0
-    var root2 = 0.0
-
-    val determinant = b * b - 4.0 * a * c
-
-    // condition for real and different roots
-    if (determinant > 0) {
-        root1 = (-b + sqrt(determinant)) / (2 * a)
-        root2 = (-b - sqrt(determinant)) / (2 * a)
-    }
-    // Condition for real and equal roots
-    else if (determinant == 0.0) {
-        root2 = -b / (2 * a)
-        root1 = root2
-    }
-    // If roots are not real
-    else {
-        val realPart = -b / (2 * a)
-        val imaginaryPart = sqrt(-determinant) / (2 * a)
-    }
-
-    return arrayOf(root1, root2)
-}
