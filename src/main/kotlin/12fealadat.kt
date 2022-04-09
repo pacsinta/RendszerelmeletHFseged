@@ -55,22 +55,3 @@ fun ASZStabilFI(
     return false
 }
 
-
-
-fun L(
-    A: Array<Double>,
-    lambda1: Double,
-    lambda2: Double
-): Array<Double> {
-    val E  = arrayOf(1.0, 0.0, 0.0, 1.0)
-
-    val L1 = Array(4){0.0}
-
-    for(i in 0..3){
-        L1[i] = A[i] - lambda2*E[i]
-        L1[i] = L1[i] / (lambda1 - lambda2)
-    }
-
-    return L1
-}
-
