@@ -1,16 +1,14 @@
-
-
 fun main(){
-    val a = 0.7
-    val b = -0.2
-    val c = 0.1
-    val d = 0.8
-    val e = 0.6
-    val f = 0.9
+    val a = -0.7
+    val b = -0.1
+    val c = 0.7
+    val d = 0.3
+    val e = -0.6
+    val f = -0.8
     val g = 0.9
 
 
-    val A = Matrix(2, 2, arrayOf(b*c + d*f, e*f, b, 0.0))
+    val A = Matrix(2, 2, arrayOf(b*c + b*d*f, e*f, b, 0.0))
     val B = Matrix(2, 1, arrayOf(1.0, 0.0))
     val CT = Matrix(1, 2, arrayOf(b*c*a+b*d*g+b*d*f*a, e*g + e*f*a))
     val d2 = a
@@ -35,5 +33,5 @@ fun main(){
         println("lamda: $l")
     }
 
-    println("Asz: ${ASZStabilFI(A)}")
+    println("Asz: ${ASZStabilDI(A)}")
 }

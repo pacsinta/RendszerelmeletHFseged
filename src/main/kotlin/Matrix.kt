@@ -62,6 +62,25 @@ data class Matrix(
         return C
     }
 
+    //substrction
+    operator fun minus(B: Matrix): Matrix {
+        return this + (B*(-1.0))
+    }
+
+    //addition
+    operator fun plus(B: Matrix): Matrix {
+        val C = Matrix(
+            row = this.row,
+            column = B.column
+        )
+        for (i in 0 until this.row) {
+            for (j in 0 until B.column) {
+                C.data[i][j] = this.data[i][j] + B.data[i][j]
+            }
+        }
+        return C
+    }
+
     operator fun Matrix.times(b: Double): Matrix {
         val C = Matrix(
             row = this.row,
@@ -115,6 +134,7 @@ data class Matrix(
         )
     }
 
+    //TODO komplex számokra nem működik
     //https://www.programiz.com/kotlin-programming/examples/quadratic-roots-equation
     private fun masodfokuMegoldo(
         a: Double = 1.0,
@@ -145,5 +165,28 @@ data class Matrix(
         return arrayOf(root1, root2)
     }
 
+    fun adj(): Matrix{
+        if (row != 2 || column != 2) {
+            throw Exception("Nem két dimenziós mátrix")
+        }
+
+        return Matrix(2, 2, arrayOf(data[1][1], -data[0][1], -data[1][0], data[0][0]))
+    }
+
+    fun inverse(): Matrix {
+        if (row != 2 || column != 2) {
+            throw Exception("Nem két dimenziós mátrix")
+        }
+
+        return adj() / det()
+    }
+
+    fun det(): Double {
+        if (row != 2 || column != 2) {
+            throw Exception("Nem két dimenziós mátrix")
+        }
+
+        return data[0][0] * data[1][1] - data[0][1] * data[1][0]
+    }
 
 }
